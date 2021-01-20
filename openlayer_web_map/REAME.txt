@@ -1,0 +1,5 @@
+How it works
+- It uses to Layers
+	1. OpenStreetMap
+	2. Geojson 
+- Every time user clicks over a country, a fetch method download information for that country and it's displayed as a pop-up as well as in a section below the map.

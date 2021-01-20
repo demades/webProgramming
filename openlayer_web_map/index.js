@@ -31,14 +31,21 @@ var vectorLayer = new ol.layer.Vector({
   }
 });
 
-var map = new ol.Map({
-  layers: [vectorLayer],
-  target: "map",
-  view: new ol.View({
-    center: [0, 0],
-    zoom: 2
-  })
+var openstreetMapStandard = new ol.layer.Tile({
+  source: new ol.source.OSM(),
+  visible: true,
+  title: 'OSMStandard'
 });
+
+var map = new ol.Map({
+layers: [vectorLayer, openstreetMapStandard],
+target: "map",
+view: new ol.View({
+  center: [0, 0],
+  zoom: 2
+})
+});
+
 
 var highlightStyle = new ol.style.Style({
   stroke: new ol.style.Stroke({
@@ -84,8 +91,17 @@ var displayFeatureInfo = function (pixel) {
       .then(function (data) {
         for (let prop in data) {
           if (data[prop].country === feature.get("name")) {
-            info.innerHTML = data[prop].country + " " + data[prop].deaths;
-            console.log(data[prop].country + " " + data[prop].deaths);
+            window.alert("For the country: " + data[prop].country + '\n' +
+            "deaths : " + data[prop].deaths + '\n' +
+            "cases: " + data[prop].cases + '\n' +
+            "recovered: " + data[prop].recovered);
+
+            ;
+            info.innerHTML = data[prop].country + " " + data[prop].deaths + " " +
+            "deaths : " + data[prop].deaths + " " +
+            "cases: " + data[prop].cases + " " + 
+            "recovered: " + data[prop].recovered;
+
           }
         }
       });
@@ -104,13 +120,13 @@ var displayFeatureInfo = function (pixel) {
   }
 };
 
-map.on("pointermove", function (evt) {
-  if (evt.dragging) {
-    return;
-  }
-  var pixel = map.getEventPixel(evt.originalEvent);
-  displayFeatureInfo(pixel);
-});
+// map.on("pointermove", function (evt) {
+//   if (evt.dragging) {
+//     return;
+//   }
+//   var pixel = map.getEventPixel(evt.originalEvent);
+//   displayFeatureInfo(pixel);
+// });
 
 map.on("click", function (evt) {
   displayFeatureInfo(evt.pixel);
