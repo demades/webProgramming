@@ -28,14 +28,14 @@
             <thead>
                 <th>Name and Surname</th>
                 <th>Address</th>
-                <th>Email</th>
                 <th>Phone Number</th>
-                <th>Actions</th>
-            </thead><tbody><tr>
-            <td>Pepe</td>
-            <td>57,rue de Raspert</td>
-            <td>fernando@navarrolopez.lu</td>
-            <td>6911980761</td></tr>
+            </thead><tbody>
+              <% results.forEach((user)=> {   %>
+            <tr>
+            <td><%= user.name %></td>
+            <td><%= user.address %></td>
+            <td><%= user.phone %></td></tr>
+            <% }) %>
         </tbody>
         </table>
      </div>

@@ -23,10 +23,10 @@
 
           
           <div class="input-group mb-3">
-             <h2> Personal details </h2>
+             <h2> Insert New Infected </h2>
           </div>
           
-          <form action="/list" method="POST">
+          <form action="/contacts" method="POST">
           <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
             <input type="text" class="form-control" placeholder="Family Name" aria-label="Family" aria-describedby="basic-addon2">
@@ -50,22 +50,25 @@
           <button type="submit" class="btn btn-primary">Submit</button>
     </div>
         </form>
+
     <div class="p-2 bg-light border"></div>
     <div class="input-group mb-3">
-        <h2> Actual Data </h2>
+        <h2> Current Infections </h2>
      <div class="input-group mb-3">
 
         <table class="table table-striped">
             <thead>
                 <th>Name and Surname</th>
                 <th>Address</th>
-                <th>Email</th>
                 <th>Phone Number</th>
-            </thead>
-            <td>Pepe</td>
-            <td>57,rue de Raspert</td>
-            <td>fernando@navarrolopez.lu</td>
-            <td>6911980761</td>
+            </thead><tbody>
+              <% results.forEach((user)=> {   %>
+            <tr>
+            <td><%= user.name %></td>
+            <td><%= user.address %></td>
+            <td><%= user.phone %></td></tr>
+            <% }) %>
+        </tbody>
         </table>
      </div>
   </body>

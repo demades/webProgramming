@@ -7,11 +7,23 @@ router.get('/', (req, res) => {
 })
 
 router.get('/contacts', (req, res) => {
-    res.render('contacts.ejs');
+    connection.query('SELECT * FROM contacts', (err, results) => {
+        if (err){
+            throw err;
+        }else{
+            res.render('contacts.ejs', {results:results});
+        }
+    })
 })
 
 router.get('/list', (req, res) => {
-    res.render('list.ejs');
+    connection.query('SELECT * FROM contacts', (err, results) => {
+        if (err){
+            throw err;
+        }else{
+            res.render('list.ejs', {results:results});
+        }
+    })
 })
 
 const components = require('./controllers/components');

@@ -12,3 +12,6 @@ app.use('/', require('./router'));
 
 app.use(express.urlencoded({extended:false}));
 app.use(express(json));
+
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
