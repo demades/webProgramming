@@ -28,6 +28,6 @@ router.get('/list', (req, res) => {
 
 const components = require('./controllers/components');
 
-router.post('/save', components.submit);
+router.post('/addPerson', components.addPerson);
 
 module.exports = router;

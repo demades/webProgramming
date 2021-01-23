@@ -26,21 +26,20 @@
              <h2> Insert New Infected </h2>
           </div>
           
-          <form action="/contacts" method="POST">
+          <form action="/addPerson" method="POST">
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
-            <input type="text" class="form-control" placeholder="Family Name" aria-label="Family" aria-describedby="basic-addon2">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
           </div>
           
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Address" aria-describedby="basic-addon3">
-            <input type="text" class="form-control" placeholder="Phone Number" aria-describedby="basic-addon3">
+            <input type="text" class="form-control"  id="address" name="address" placeholder="Address" aria-describedby="basic-addon3">
+            <input type="text" class="form-control"  id="phone" name="phone" placeholder="Phone Number" aria-describedby="basic-addon3">
           </div>
                     
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Email" aria-label="Username">
+            <input type="text" class="form-control"  id="email" name="email" placeholder="Email" aria-label="Username">
             <span class="input-group-text">@</span>
-            <input type="text" class="form-control" placeholder="Domain" aria-label="Server">
+            <input type="text" class="form-control"  id="domain" name="domain" placeholder="Domain" aria-label="Server">
           </div>
           
           <div class="input-group">
@@ -48,9 +47,8 @@
             <textarea class="form-control" aria-label="With textarea"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
         </form>
-
+      </div>
     <div class="p-2 bg-light border"></div>
     <div class="input-group mb-3">
         <h2> Current Infections </h2>
