@@ -5,7 +5,8 @@ exports.addPerson = (req, res) =>{
     const address = req.body.address;
     const phone = req.body.phone;
     const comments = req.body.comments;
-    connection.query('INSERT INTO contacts SET ?', {name:name, address:address, phone:phone, comments:comments}, (err, results)=>{
+    const email = req.body.email;
+    connection.query('INSERT INTO contacts SET ?', {name:name, address:address, phone:phone, comments:comments, email:email}, (err, results)=>{
         if (err){
             throw err;
         }else{
@@ -21,7 +22,7 @@ exports.updatePerson = (req, res) =>{
     const address = req.body.address;
     const comments = req.body.comments;
     const phone = req.body.phone;
-    connection.query('UPDATE contacts SET ?  WHERE id =?', [{name:name, address:address, comments:comments}, {phone:phone}, {id:id}], (err, results)=>{
+    connection.query('UPDATE contacts SET ?  WHERE id =?', [{name:name, address:address, comments:comments, phone:phone}, {id:id}], (err, results)=>{
         if (err){
             throw err;
         }else{
@@ -60,6 +61,18 @@ exports.newMatch = (req, res) =>{
     res.redirect('/newMatch');
 }
 
+exports.updateMatch = (req, res) =>{
+    const id = req.body.id;
+    const date = req.body.date;
+    const comments = req.body.comments;
 
+    connection.query('UPDATE matches SET ?  WHERE id =?', [{date:date, comments:comments}, {id:id}], (err, results)=>{
+        if (err){
+            throw err;
+        }else{
+            res.redirect('/listMatches');
+        }
+    })
+}
 
 

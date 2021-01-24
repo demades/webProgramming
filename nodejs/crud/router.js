@@ -104,6 +104,7 @@ const components = require('./controllers/components');
 router.post('/addPerson', components.addPerson);
 router.post('/updatePerson', components.updatePerson);
 router.post('/newMatch', components.newMatch);
+router.post('/updateMatch', components.updateMatch);
 
 
 
