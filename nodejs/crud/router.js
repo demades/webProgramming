@@ -58,10 +58,52 @@ router.get('/newMatch', (req, res) => {
     })
 })
 
+router.get('/listMatches', (req, res) => {
+    connection.query('SELECT * FROM matches', (err, results) => {
+        if (err){
+            throw err;
+        }else{
+            res.render('listMatches.ejs', {results:results});
+        }
+    })
+})
+
+
+router.get('/removeMatch/:id', (req, res) => {
+    const id = req.params.id;
+    console.log(id);
+    connection.query('DELETE from matches WHERE id = ?', [id], (err, results) => {
+        if (err){
+            throw err;
+        }
+        connection.query('DELETE from matches_contacts WHERE id = ?', [id], (err, results)=>{
+            if (err){
+                throw err;
+            }        
+        });
+    })
+    res.redirect('/listMatches');
+})
+
+router.get('/editMatch/:id', (req, res) => {
+    const id = req.params.id;
+    connection.query('SELECT m.id, m.comments, m.date, mc.contacts_id FROM matches m INNER JOIN matches_contacts mc ON m.id = mc.id WHERE m.id=?',[id], (err, results) => {
+        if (err){
+            throw err;
+        }else{
+            res.render('editMatch.ejs', {match:results[0]});
+        }
+    })
+})
+
+
 const components = require('./controllers/components');
+
 
 router.post('/addPerson', components.addPerson);
 router.post('/updatePerson', components.updatePerson);
 router.post('/newMatch', components.newMatch);
+
+
 
 module.exports = router;

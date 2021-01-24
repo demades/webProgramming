@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>Main Page COVID Contacts</title>
+  </head>
+  <body>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <div class="d-grid gap-3">
+        <div class="p-2 bg-light border"> 
+    <img src="https://covid19.public.lu/en/_jcr_content/root/root-responsivegrid/content-responsivegrid/sections-responsivegrid/section/col1/image.coreimg.jpeg/1604057214155/sante-lu-banners-declaration-covid-19-3840x742px-update-en.jpeg" class="img-fluid" >
+            </div>
+    <div class="p-2 bg-light border">        
+          </div>
+
+
+          
+          <div class="input-group mb-3">
+             <h2> Insert New Contacts Match </h2>
+          </div>
+      </div>
+     <div class="input-group mb-3">
+
+        <table class="table table-striped">
+            <thead>
+                <th>Id</th>
+                <th>Comments</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </thead><tbody>
+              <% results.forEach((match)=> {   %>
+            <tr>
+            <td><%= match.id %></td>
+            <td><%= match.comments %></td>
+            <td><%= match.date %></td>
+            <td><a href="/editMatch/<%= match.id %>" class="btn btn-outline-info">Edit</a>
+                <a href="/removeMatch/<%= match.id %>" class="btn btn-outline-danger">Delete</a>
+            </td></tr>
+            </td></tr>
+            <% }) %>
+        </tbody>
+        </table>
+     </div>
+  </body>
+</html>

@@ -51,7 +51,6 @@ exports.newMatch = (req, res) =>{
         }
     })
     checked.forEach(contact_id => {
-        console.log('checked is')
         connection.query('INSERT INTO matches_contacts SET ? , id = LAST_INSERT_ID()', {contact_id:contact_id}, (err, results)=>{
             if (err){
                 throw err;
@@ -60,5 +59,7 @@ exports.newMatch = (req, res) =>{
     });
     res.redirect('/newMatch');
 }
+
+
 
 
