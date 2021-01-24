@@ -21,7 +21,7 @@ exports.updatePerson = (req, res) =>{
     const address = req.body.address;
     const comments = req.body.comments;
     const phone = req.body.phone;
-    connection.query('UPDATE contacts SET ?  WHERE id = ?', [{name:name, address:address, comments:comments, phone:phone}, id], (err, results)=>{
+    connection.query('UPDATE contacts SET ?  WHERE id =?', [{name:name, address:address, comments:comments}, {phone:phone}, {id:id}], (err, results)=>{
         if (err){
             throw err;
         }else{
@@ -40,4 +40,25 @@ exports.removePerson = (req, res) =>{
         }
     })
 }
+
+exports.newMatch = (req, res) =>{
+    const checked = req.body.checked;
+    const comments = req.body.comments;
+    const date = req.body.date;
+    connection.query('INSERT INTO matches SET ?', [{comments:comments, date:date}], (err, results)=>{
+        if (err){
+            throw err;
+        }
+    })
+    checked.forEach(contact_id => {
+        console.log('checked is')
+        connection.query('INSERT INTO matches_contacts SET ? , id = LAST_INSERT_ID()', {contact_id:contact_id}, (err, results)=>{
+            if (err){
+                throw err;
+            }      
+        })    
+    });
+    res.redirect('/newMatch');
+}
+
 

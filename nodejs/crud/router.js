@@ -48,9 +48,20 @@ router.get('/removePerson/:id', (req, res) => {
     })
 })
 
+router.get('/newMatch', (req, res) => {
+    connection.query('SELECT * FROM contacts', (err, results) => {
+        if (err){
+            throw err;
+        }else{
+            res.render('newMatch.ejs', {results:results});
+        }
+    })
+})
+
 const components = require('./controllers/components');
 
 router.post('/addPerson', components.addPerson);
 router.post('/updatePerson', components.updatePerson);
+router.post('/newMatch', components.newMatch);
 
 module.exports = router;

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>Main Page COVID Contacts</title>
+  </head>
+  <body>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <div class="d-grid gap-3">
+        <div class="p-2 bg-light border"> 
+    <img src="https://covid19.public.lu/en/_jcr_content/root/root-responsivegrid/content-responsivegrid/sections-responsivegrid/section/col1/image.coreimg.jpeg/1604057214155/sante-lu-banners-declaration-covid-19-3840x742px-update-en.jpeg" class="img-fluid" >
+            </div>
+
+    <div class="p-2 bg-light border"></div>
+    <div class="input-group mb-3">
+        <h2> Report a Match </h2>
+     <div class="input-group mb-3">
+        <form action="/newMatch" method="POST">
+        <table class="table table-striped">
+            <thead>
+                <th>Name and Surname</th>
+                <th>Address</th>
+                <th>Phone Number</th>
+                <th>Matched</th>
+            </thead><tbody>
+              <% results.forEach((user)=> {   %>
+            <tr>
+            <td><%= user.name %></td>
+            <td><%= user.address %></td>
+            <td><%= user.phone %></td>
+            <td><input name="checked" type="checkbox" value="<%= user.id %>" class="btn btn-outline-info">
+            </td></tr>
+            <% }) %>
+            <td><textarea class="form-control" id="comments" name="comments" aria-label="With textarea"></textarea></td>
+            <td><input type="date" id="date" name="date" placeholder="dd-mm-yyyy" value="" min="2021-01-01"></td>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        </tbody>
+        </table>
+     </div>
+  </body>
+</html>
