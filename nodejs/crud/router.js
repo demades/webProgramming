@@ -87,11 +87,12 @@ router.get('/removeMatch/:id', (req, res) => {
 
 router.get('/editMatch/:id', (req, res) => {
     const id = req.params.id;
-    connection.query('SELECT m.id, m.comments, m.date, mc.contacts_id FROM matches m INNER JOIN matches_contacts mc ON m.id = mc.id WHERE m.id=?',[id], (err, results) => {
+    console.log(id);
+    connection.query('SELECT m.id, m.comments, m.date, mc.contact_id, c.name FROM matches m INNER JOIN matches_contacts mc ON m.id = mc.id INNER JOIN contacts c ON mc.contact_id = c.id WHERE m.id=?',[id], (err, results) => {
         if (err){
             throw err;
         }else{
-            res.render('editMatch.ejs', {match:results[0]});
+            res.render('editMatch.ejs', {match:results});
         }
     })
 })
