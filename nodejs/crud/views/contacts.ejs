@@ -23,7 +23,7 @@
 
           
           <div class="input-group mb-3">
-             <h2> Insert New Infected </h2>
+             <h2> Insert New Infection </h2>
           </div>
           
           <form action="/addPerson" method="POST">
@@ -44,7 +44,7 @@
           
           <div class="input-group">
             <span class="input-group-text">Comments</span>
-            <textarea class="form-control" aria-label="With textarea"></textarea>
+            <textarea class="form-control" id="comments" name="comments" aria-label="With textarea"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -59,12 +59,17 @@
                 <th>Name and Surname</th>
                 <th>Address</th>
                 <th>Phone Number</th>
+                <th>Actions</th>
             </thead><tbody>
               <% results.forEach((user)=> {   %>
             <tr>
             <td><%= user.name %></td>
             <td><%= user.address %></td>
-            <td><%= user.phone %></td></tr>
+            <td><%= user.phone %></td>
+            <td><a href="/editPerson/<%= user.id %>" class="btn btn-outline-info">Edit</a>
+                <a href="/removePerson/<%= user.id %>" class="btn btn-outline-danger">Delete</a>
+            </td></tr>
+            </td></tr>
             <% }) %>
         </tbody>
         </table>

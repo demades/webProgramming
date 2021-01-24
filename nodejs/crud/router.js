@@ -26,8 +26,31 @@ router.get('/list', (req, res) => {
     })
 })
 
+router.get('/editPerson/:id', (req, res) => {
+    const id = req.params.id;
+    connection.query('SELECT * FROM contacts WHERE ID=?',[id], (err, results) => {
+        if (err){
+            throw err;
+        }else{
+            res.render('editPerson.ejs', {user:results[0]});
+        }
+    })
+})
+
+router.get('/removePerson/:id', (req, res) => {
+    const id = req.params.id;
+    connection.query('DELETE FROM contacts WHERE ID=?',[id], (err, results) => {
+        if (err){
+            throw err;
+        }else{
+            res.redirect('/contacts');
+        }
+    })
+})
+
 const components = require('./controllers/components');
 
 router.post('/addPerson', components.addPerson);
+router.post('/updatePerson', components.updatePerson);
 
 module.exports = router;

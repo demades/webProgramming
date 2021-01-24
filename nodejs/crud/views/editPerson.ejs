@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>Main Page COVID Contacts</title>
+  </head>
+  <body>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <div class="d-grid gap-3">
+        <div class="p-2 bg-light border"> 
+    <img src="https://covid19.public.lu/en/_jcr_content/root/root-responsivegrid/content-responsivegrid/sections-responsivegrid/section/col1/image.coreimg.jpeg/1604057214155/sante-lu-banners-declaration-covid-19-3840x742px-update-en.jpeg" class="img-fluid" >
+            </div>
+    <div class="p-2 bg-light border">       
+        <% if(user) { %> 
+          </div>          
+          <div class="input-group mb-3">
+             <h2> Edit Infection </h2>
+          </div>
+          <input hidden id="id" value="<%= user.id %>" >
+          <form action="/updatePerson" method="POST">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" id="name" name="name" value="<%= user.name %>" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+          
+          <div class="input-group mb-3">
+            <input type="text" class="form-control"  id="address" name="address" value="<%= user.address %>"placeholder="Address" aria-describedby="basic-addon3">
+            <input type="text" class="form-control"  id="phone" name="phone" value="<%= user.phone %>" placeholder="Phone Number" aria-describedby="basic-addon3">
+          </div>
+                    
+          <div class="input-group mb-3">
+            <input type="text" class="form-control"  id="email" name="email" value="<%= user.email %>" placeholder="Email" aria-label="Username">
+          </div>
+          
+          <div class="input-group">
+            <span class="input-group-text">Comments</span>
+            <textarea class="form-control" id="comments" name="comments" value="<%= user.comments %>" aria-label="With textarea"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    <div class="p-2 bg-light border"></div>
+    <% } %>
+    <div class="input-group mb-3">
+     </div>
+  </body>
+</html>
