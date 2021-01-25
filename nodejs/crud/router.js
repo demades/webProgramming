@@ -1,11 +1,15 @@
+// Import modules 
 const express = require('express');
 const router = express.Router();
 const connection = require('./database/db');
+
+// Set home page
 
 router.get('/', (req, res) => {
     res.render('home.ejs');
 })
 
+// List of contacts (people infected)
 router.get('/contacts', (req, res) => {
     connection.query('SELECT * FROM contacts', (err, results) => {
         if (err){
@@ -16,15 +20,7 @@ router.get('/contacts', (req, res) => {
     })
 })
 
-router.get('/list', (req, res) => {
-    connection.query('SELECT * FROM contacts', (err, results) => {
-        if (err){
-            throw err;
-        }else{
-            res.render('list.ejs', {results:results});
-        }
-    })
-})
+// Edit a contact by ID
 
 router.get('/editPerson/:id', (req, res) => {
     const id = req.params.id;
@@ -37,6 +33,8 @@ router.get('/editPerson/:id', (req, res) => {
     })
 })
 
+// Remove a contact by ID
+
 router.get('/removePerson/:id', (req, res) => {
     const id = req.params.id;
     connection.query('DELETE FROM contacts WHERE ID=?',[id], (err, results) => {
@@ -48,6 +46,7 @@ router.get('/removePerson/:id', (req, res) => {
     })
 })
 
+// New Match from two or more contacts
 router.get('/newMatch', (req, res) => {
     connection.query('SELECT * FROM contacts', (err, results) => {
         if (err){
@@ -58,6 +57,7 @@ router.get('/newMatch', (req, res) => {
     })
 })
 
+// List Mtaches
 router.get('/listMatches', (req, res) => {
     connection.query('SELECT * FROM matches', (err, results) => {
         if (err){
@@ -68,6 +68,8 @@ router.get('/listMatches', (req, res) => {
     })
 })
 
+
+// Remove and existing Match
 
 router.get('/removeMatch/:id', (req, res) => {
     const id = req.params.id;
@@ -85,6 +87,8 @@ router.get('/removeMatch/:id', (req, res) => {
     res.redirect('/listMatches');
 })
 
+// Edit a match by ID
+
 router.get('/editMatch/:id', (req, res) => {
     const id = req.params.id;
     console.log(id);
@@ -97,10 +101,12 @@ router.get('/editMatch/:id', (req, res) => {
     })
 })
 
+// Import controller where lie POST request handlers
 
 const components = require('./controllers/components');
 
 
+// Routing to POST request to 'components' handlers.
 router.post('/addPerson', components.addPerson);
 router.post('/updatePerson', components.updatePerson);
 router.post('/newMatch', components.newMatch);

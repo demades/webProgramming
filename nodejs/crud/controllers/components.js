@@ -1,5 +1,8 @@
 const connection = require('../database/db');
 
+// Managing requests for Contacts. A contact in this content is a person infected (yes, I bit misleading)
+
+
 exports.addPerson = (req, res) =>{
     const name = req.body.name;
     const address = req.body.address;
@@ -41,6 +44,9 @@ exports.removePerson = (req, res) =>{
         }
     })
 }
+
+// Managing requests for Matches. A match in a contact among two or more people (yes, I bit misleading)
+
 
 exports.newMatch = (req, res) =>{
     const checked = req.body.checked;
