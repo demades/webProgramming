@@ -14,10 +14,8 @@ app.use('/', require('./router'));
 
 
 
-app.listen(5000, () =>{
-    console.log("server running in http://localhost:5000");
+app.listen(8080, () =>{
+    console.log("server running in port 8080");
     }
 )
 
-// app.engine('html', require('ejs').renderFile);
-// app.set('view engine', 'html');
