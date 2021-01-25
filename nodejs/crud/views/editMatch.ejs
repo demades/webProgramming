@@ -22,10 +22,10 @@
           <div class="input-group mb-3">
              <h2> Edit Match </h2>
           </div>
-          <input hidden id="id" value="<%= match.id %>" >
           <form action="/updateMatch" method="POST">
           <div class="input-group mb-3">
           <% match.forEach((item)=> {   %>
+            <input hidden id="id" value="<%= match.id %>" >
             <input type="text" class="form-control" id="<%= item.name %>" name="contactId" value="<%= item.name %>" placeholder="Contact" aria-label="name" aria-describedby="basic-addon1" readonly>
           </div>
           <% }) %>

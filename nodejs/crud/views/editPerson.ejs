@@ -23,9 +23,9 @@
           <div class="input-group mb-3">
              <h2> Edit Infection </h2>
           </div>
-          <input hidden id="id" value="<%= user.id %>" >
-          <form action="/updatePerson" method="POST">
+          <form action="/updatePerson" method="POST">            
           <div class="input-group mb-3">
+            <input id="id" value="<%= user.id %>" name="id" name="id" placeholder="id" aria-describedby="basic-addon1" hidden>
             <input type="text" class="form-control" id="name" name="name" value="<%= user.name %>" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
           </div>
           

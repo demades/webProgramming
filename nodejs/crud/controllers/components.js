@@ -22,7 +22,7 @@ exports.updatePerson = (req, res) =>{
     const address = req.body.address;
     const comments = req.body.comments;
     const phone = req.body.phone;
-    connection.query('UPDATE contacts SET ?  WHERE id =?', [{name:name, address:address, comments:comments, phone:phone}, {id:id}], (err, results)=>{
+    connection.query('UPDATE contacts SET ?  WHERE id = ?', [{name:name, address:address, comments:comments, phone:phone}, id], (err, results)=>{
         if (err){
             throw err;
         }else{
@@ -66,7 +66,7 @@ exports.updateMatch = (req, res) =>{
     const date = req.body.date;
     const comments = req.body.comments;
 
-    connection.query('UPDATE matches SET ?  WHERE id =?', [{date:date, comments:comments}, {id:id}], (err, results)=>{
+    connection.query('UPDATE matches SET ?  WHERE id =?', [{date:date, comments:comments}, id], (err, results)=>{
         if (err){
             throw err;
         }else{
